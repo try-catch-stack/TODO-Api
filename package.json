@@ -6,8 +6,6 @@
     "node":"10.19.0"
   },
   "scripts": {
-    "connectDB": "sudo systemctl start mongod",
-    "stopDB": "sudo systemctl stop mongod",
     "dev": "nodemon index.js",
     "start": "node index.js"
     
