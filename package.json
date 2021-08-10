@@ -2,9 +2,15 @@
   "name": "rest-api-for-todo-app",
   "description": "This is a REST api made using Node.js for TODO app.",
   "main": "index.js",
+  "engines":{
+    "node":"10.19.0"
+  },
   "scripts": {
-    "prestart": "npm install",
+    "connectDB": "sudo systemctl start mongod",
+    "stopDB": "sudo systemctl stop mongod",
+    "dev": "nodemon index.js",
     "start": "node index.js"
+    
   },
   "keywords": [
     "swagger"
