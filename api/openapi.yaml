@@ -1,0 +1,421 @@
+openapi: 3.0.1
+info:
+  title: REST API for TODO app
+  description: This is a REST api made using Node.js for TODO app.
+  version: "0.1"
+servers:
+- url: https://rest-api-todoapp.herokuapp.com
+paths:
+  /api/auth/signup:
+    post:
+      description: Register a new user.
+      operationId: apiAuthSignupPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Signup'
+            examples:
+              "0":
+                value: "{\n    \"username\":\"Username\",\n    \"email\":\"someone@gmail.com\"\
+                  ,\n    \"name\":\"NewUser\",\n    \"password\":\"password\"\n}"
+      responses:
+        "409":
+          description: Auto generated using Swagger Inspector
+          content:
+            text/html; charset=utf-8:
+              schema:
+                type: string
+                x-content-type: text/html; charset=utf-8
+              examples: {}
+      servers:
+      - url: https://rest-api-todoapp.herokuapp.com
+      x-swagger-router-controller: Default
+    servers:
+    - url: https://rest-api-todoapp.herokuapp.com
+  /api/auth/login:
+    post:
+      description: Login using username and password of the user.
+      operationId: apiAuthLoginPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+            examples:
+              "0":
+                value: "{\n    \"username\":\"USER1\",\n    \"password\":\"password\"\
+                  \n}"
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+                x-content-type: application/json; charset=utf-8
+              examples: {}
+      servers:
+      - url: https://rest-api-todoapp.herokuapp.com
+      x-swagger-router-controller: Default
+    servers:
+    - url: https://rest-api-todoapp.herokuapp.com
+  /api/auth/profile:
+    get:
+      description: Get profile of the user using the TOKEN.
+      operationId: apiAuthProfileGET
+      parameters:
+      - name: Token
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 24cb36d5f91787ed800ee8188ad7e59bb4d7f6efba7cf311738911555b161f2b0a7c844b5fdd94d3
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+                x-content-type: application/json; charset=utf-8
+              examples: {}
+      servers:
+      - url: https://rest-api-todoapp.herokuapp.com
+      x-swagger-router-controller: Default
+    servers:
+    - url: https://rest-api-todoapp.herokuapp.com
+  /api/todo/:
+    get:
+      description: Get all TODOs of the user with given TOKEN.
+      operationId: apiTodoGET
+      parameters:
+      - name: Token
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 24cb36d5f91787ed800ee8188ad7e59bb4d7f6efba7cf311738911555b161f2b0a7c844b5fdd94d3
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+                x-content-type: application/json; charset=utf-8
+              examples: {}
+      servers:
+      - url: https://rest-api-todoapp.herokuapp.com
+      x-swagger-router-controller: Default
+    servers:
+    - url: https://rest-api-todoapp.herokuapp.com
+  /api/todo/create:
+    post:
+      description: Create a new TODO for the user.
+      operationId: apiTodoCreatePOST
+      parameters:
+      - name: Token
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 24cb36d5f91787ed800ee8188ad7e59bb4d7f6efba7cf311738911555b161f2b0a7c844b5fdd94d3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TODO'
+            examples:
+              "0":
+                value: "{\n \"title\":\"New TODO 1\"   \n}"
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+                x-content-type: application/json; charset=utf-8
+              examples: {}
+      servers:
+      - url: https://rest-api-todoapp.herokuapp.com
+      x-swagger-router-controller: Default
+    servers:
+    - url: https://rest-api-todoapp.herokuapp.com
+  /api/todo/{id}:
+    get:
+      description: Get a particular TODO using its id.
+      operationId: apiTodoIdGET
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 61128b953a54e50015482f72
+      - name: Token
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 24cb36d5f91787ed800ee8188ad7e59bb4d7f6efba7cf311738911555b161f2b0a7c844b5fdd94d3
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+                x-content-type: application/json; charset=utf-8
+              examples: {}
+      servers:
+      - url: https://rest-api-todoapp.herokuapp.com
+      x-swagger-router-controller: Default
+    put:
+      description: Update a TODO (PUT)
+      operationId: apiTodoIdPUT
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 61128b953a54e50015482f72
+      - name: Token
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 24cb36d5f91787ed800ee8188ad7e59bb4d7f6efba7cf311738911555b161f2b0a7c844b5fdd94d3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Update_TODO'
+            examples:
+              "0":
+                value: "{\n \"title\":\"Updated TODO\"   \n}"
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+                x-content-type: application/json; charset=utf-8
+              examples: {}
+      servers:
+      - url: https://rest-api-todoapp.herokuapp.com
+      x-swagger-router-controller: Default
+    delete:
+      description: Delete a TODO using its id.
+      operationId: apiTodoIdDELETE
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 61128bba3a54e50015482f85
+      - name: Token
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 24cb36d5f91787ed800ee8188ad7e59bb4d7f6efba7cf311738911555b161f2b0a7c844b5fdd94d3
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            text/html; charset=utf-8:
+              schema:
+                type: string
+                x-content-type: text/html; charset=utf-8
+              examples: {}
+      servers:
+      - url: https://rest-api-todoapp.herokuapp.com
+      x-swagger-router-controller: Default
+    patch:
+      description: Update a TODO (PATCH)
+      operationId: apiTodoIdPATCH
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 61128b953a54e50015482f72
+      - name: Token
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 24cb36d5f91787ed800ee8188ad7e59bb4d7f6efba7cf311738911555b161f2b0a7c844b5fdd94d3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Update_TODO'
+            examples:
+              "0":
+                value: "{\n \"title\":\"New TODO 2 Patched\"   \n}"
+              "1":
+                value: "{\n \"title\":\"New TODO 2 Put\"  \n}"
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+                x-content-type: application/json; charset=utf-8
+              examples: {}
+      servers:
+      - url: https://rest-api-todoapp.herokuapp.com
+      x-swagger-router-controller: Default
+    servers:
+    - url: https://rest-api-todoapp.herokuapp.com
+  /api/todo/{id}/add-collaborators/:
+    post:
+      description: Auto generated using Swagger Inspector
+      operationId: apiTodoIdAdd_collaboratorsPOST
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 61128b953a54e50015482f72
+      - name: Token
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 24cb36d5f91787ed800ee8188ad7e59bb4d7f6efba7cf311738911555b161f2b0a7c844b5fdd94d3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Add_OR_Remove_Collaborator'
+            examples:
+              "0":
+                value: "{\n\"userid\":\"610bf96c1d4fbe7cc6530449\"\n}"
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+                x-content-type: application/json; charset=utf-8
+              examples: {}
+      servers:
+      - url: https://rest-api-todoapp.herokuapp.com
+      x-swagger-router-controller: Default
+    servers:
+    - url: https://rest-api-todoapp.herokuapp.com
+  /api/todo/{id}/remove-collaborators/:
+    post:
+      description: Auto generated using Swagger Inspector
+      operationId: apiTodoIdRemove_collaboratorsPOST
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 61128b953a54e50015482f72
+      - name: Token
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 24cb36d5f91787ed800ee8188ad7e59bb4d7f6efba7cf311738911555b161f2b0a7c844b5fdd94d3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Add_OR_Remove_Collaborator'
+            examples:
+              "0":
+                value: "{\n\"userid\":\"610bf96c1d4fbe7cc6530449\"\n}"
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+                x-content-type: application/json; charset=utf-8
+              examples: {}
+      servers:
+      - url: https://rest-api-todoapp.herokuapp.com
+      x-swagger-router-controller: Default
+    servers:
+    - url: https://rest-api-todoapp.herokuapp.com
+components:
+  schemas:
+    Login:
+      type: object
+      properties:
+        password:
+          type: string
+        username:
+          type: string
+    Signup:
+      type: object
+      properties:
+        password:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        username:
+          type: string
+    TODO:
+      type: object
+      properties:
+        title:
+          type: string
+    Update_TODO:
+      type: object
+      properties:
+        title:
+          type: string
+    Add_OR_Remove_Collaborator:
+      type: object
+      properties:
+        userid:
+          type: string
